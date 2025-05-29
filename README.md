@@ -8,14 +8,16 @@ LLM-powered, emotion-aware book discovery built with **LangChain, Chroma, Huggin
 ---
 
 ## Table of contents
-1. [Project motivation](#project-motivation)  
-2. [Data](#data)  
-3. [Pipeline overview](#pipeline-overview)  
-4. [Quick start](#quick-start)  
-5. [Code & notebook guide](#code--notebook-guide)  
-6. [Using the Gradio app](#using-the-gradio-app)  
-7. [Directory layout](#directory-layout)  
-8. [License](#license)  
+1. [Project motivation](#project-motivation)
+2. [UI preview](#ui-preview)
+3. [Short demo](#short-demo)  
+4. [Data](#data)  
+5. [Pipeline overview](#pipeline-overview)  
+6. [Quick start](#quick-start)  
+7. [Code & notebook guide](#code--notebook-guide)  
+8. [Using the Gradio app](#using-the-gradio-app)  
+9. [Directory layout](#directory-layout)  
+10. [License](#license)  
 
 ---
 
@@ -25,7 +27,7 @@ Under the hood we combine semantic search with lightweight sentiment inference t
 
 ---
 
-### Live UI preview
+### UI preview
 
 <p align="center">
   <img src="docs/media/Dashboard.png" alt="Screenshot of the Gradio dashboard"
