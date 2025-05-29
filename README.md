@@ -20,9 +20,23 @@ LLM-powered, emotion-aware book discovery built with **LangChain, Chroma, Huggin
 ---
 
 ## Project motivation
-Everyone knows the *“I loved **_The Alchemist_ — what next?”* dilemma.  
 The goal is to **recommend books from free-text descriptions**, while letting readers filter by broad category (fiction, nonfiction, children’s …) *and* mood (joy, suspense, sadness, etc.).  
 Under the hood we combine semantic search with lightweight sentiment inference to return covers, titles and punchy blurbs in a scrollable gallery.
+
+---
+
+### Live UI preview
+
+<p align="center">
+  <img src="docs/media/Dashboard.png" alt="Screenshot of the Gradio dashboard"
+       width="100%">
+</p>
+
+---
+
+### Short demo
+
+<video src="docs/media/Demo.mp4" controls width="100%"></video>
 
 ---
 
