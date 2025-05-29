@@ -1,7 +1,7 @@
 import pandas as pd 
 import numpy as np
 from dotenv import load_dotenv
-
+from pathlib import Path
 from langchain_community.document_loaders import TextLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import CharacterTextSplitter
@@ -12,18 +12,21 @@ import gradio as gr
 load_dotenv()
 
 books = pd.read_csv(r"notebook\books_with_emotions.csv")
-books["large_thumbnail"] = books["large_thumbnail"] + "&fife=w800"
+books["large_thumbnail"] = books["thumbnail"] + "&fife=w800"
 books["large_thumbnail"] = np.where(books["large_thumbnail"].isna(), "cover_not_found.jpg", books["large_thumbnail"])
 
-raw_documents = TextLoader(r"notebook\tagged_description.txt").load()
-text_splitter = CharacterTextSplitter(seperator="\n", chunk_size=0, chunk_overlap=0)
+base_dir = Path(__file__).parent / ".." / "notebook"
+raw_documents = TextLoader(base_dir / "tagged_description.txt", encoding="utf-8").load()
+text_splitter = CharacterTextSplitter(separator="\n", chunk_size=0, chunk_overlap=0)
 documents = text_splitter.split_documents(raw_documents)
-db_books = Chroma.from_documents(documents, OpenAIEmbeddings)
+embeddings = OpenAIEmbeddings()         
+db_books = Chroma.from_documents(documents, embeddings)
+
 
 def retrieve_semantic_recommendations(query:str, category:str =None, tone:str=None, initial_top_k:int=50, final_top_k:int=16)->pd.DataFrame:
     recs = db_books.similarity_search(query, k =initial_top_k)
     books_list= [int(rec.page_content.strip('"').split()[0]) for rec in recs]
-    books_recs= books[books["isbn13"].isin(books_list)].head(final_top_k)
+    book_recs= books[books["isbn13"].isin(books_list)].head(final_top_k)
 
     if category != "All":
         book_recs = book_recs[book_recs["simple_categories"] == category]
