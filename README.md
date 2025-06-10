@@ -1,21 +1,5 @@
-<<<<<<< HEAD
----
-title: Semantic Book Recommender
-emoji: 🐢
-colorFrom: gray
-colorTo: indigo
-sdk: gradio
-sdk_version: 5.31.0
-app_file: app.py
-pinned: false
-license: mit
-short_description: Gradio app that suggests books by meaning, mood, and categor
----
-
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
-=======
 # Semantic Book Recommender 🚀  
-LLM-powered, emotion-aware book discovery built with **LangChain, Chroma, Hugging Face Transformers** and a slick **Gradio** front-end.
+LLM-powered, **containerized**, emotion-aware book discovery built with **LangChain, Chroma, Hugging Face Transformers** and a slick **Gradio** front-end via Docker.
 
 [![Open in 🤗 Spaces](https://img.shields.io/badge/Open%20in-🤗%20Spaces-yellow.svg)](https://huggingface.co/spaces/Hamza9320/semantic-book-recommender)
 ![Python 3.11+](https://img.shields.io/badge/python-3.10+-blue.svg)
@@ -111,6 +95,45 @@ python src/gradio-dashboard.py
 
 ---
 
+## Docker
+
+You can either **pull** the prebuilt image from Docker Hub or **build** it yourself.
+
+### Option A: Pull & run
+
+```bash
+# Pull the image
+docker pull hamza9320/gradio-app:latest
+
+# Run (map host 7860 → container 7860)
+docker run -d \
+  -p 7860:7860 \
+  --name gradio-app \
+  -e OPENAI_API_KEY="$OPENAI_API_KEY" \
+  hamza9320/gradio-app:latest
+
+# Then browse to:
+#   http://localhost:7860
+```
+
+### Option B: Build from source
+
+```bash
+# From the repo root (where your Dockerfile lives)
+docker build -t hamza9320/gradio-app:latest .
+
+# Then the same run command
+docker run -d \
+  -p 7860:7860 \
+  --name gradio-app \
+  -e OPENAI_API_KEY="$OPENAI_API_KEY" \
+  hamza9320/gradio-app:latest
+
+# Browse to http://localhost:7860
+```
+
+---
+
 ## Code & notebook guide
 
 | File / notebook | Purpose |
@@ -153,4 +176,3 @@ python src/gradio-dashboard.py
 ## License
 
 Released under the **MIT License** 
->>>>>>> github/main
