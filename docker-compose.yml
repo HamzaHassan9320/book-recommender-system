@@ -1,0 +1,6 @@
+services:
+  semanticbookrecommender:
+    image: semanticbookrecommender
+    build:
+      context: .
+      dockerfile: ./Dockerfile
