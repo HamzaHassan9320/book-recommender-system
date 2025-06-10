@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 .env
+=======
+.env
+tagged_description.txt
+books_with)categories.csv
+books_with_emotions.csv
+books_cleaned.csv
+>>>>>>> github/main
